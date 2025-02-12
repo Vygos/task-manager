@@ -1,0 +1,73 @@
+<mat-toolbar color="secondary">
+  <span>Task manager</span>
+</mat-toolbar>
+<div class="outer-container">
+  <mat-card appearance="outlined" [ngStyle]="{ marginTop: '10px' }">
+    <mat-card-content class="card-container">
+      <div class="table-list-container">
+        <button class="add-task-btn" mat-raised-button (click)="onAddTask()">
+          Add task
+        </button>
+
+        <table mat-table [dataSource]="page.data" class="mat-elevation-z8">
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef>Created At</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.created_at | date : "dd-MM-yyyy HH:mm:ss" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="updated_at">
+            <th mat-header-cell *matHeaderCellDef>Updated At</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.updated_at | date : "dd-MM-yyyy HH:mm:ss" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-button
+                aria-label="action menu button"
+                [matMenuTriggerFor]="actions"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #actions="matMenu">
+                <button mat-menu-item (click)="onEditTask(element)">
+                  <mat-icon>edit</mat-icon>
+                  Edit
+                </button>
+                <button mat-menu-item (click)="onDeleteTask(element)">
+                  <mat-icon>delete</mat-icon>
+                  Delete
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columns"></tr>
+          <tr mat-row *matRowDef="let row; columns: columns"></tr>
+        </table>
+
+        <mat-paginator
+          (page)="onPageChange($event)"
+          [length]="page.total_elements"
+          [pageSizeOptions]="[5, 10, 15]"
+          aria-label="Select page"
+        ></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

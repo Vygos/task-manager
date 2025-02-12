@@ -1,0 +1,9 @@
+db:
+  host: localhost
+  user: postgres
+  pass: postgres
+  name: task_manager
+  port: 5432
+  maxConn: 5
+port: 8080
+env: dev

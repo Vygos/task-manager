@@ -1,0 +1,15 @@
+.outer-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.add-task-btn {
+  margin: 16px 16px
+}

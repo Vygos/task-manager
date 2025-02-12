@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>
+  <form class="form" #taskForm="ngForm">
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput name="title" [(ngModel)]="task.title" maxlength="50" required />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select name="status" [(ngModel)]="task.status" required>
+            <mat-option value="completed">completed</mat-option>
+            <mat-option value="incomplete">incomplete</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    cdkFocusInitial
+    (click)="onConfirm()"
+    [disabled]="taskForm.invalid"
+  >
+    Confirm
+  </button>
+</mat-dialog-actions>
