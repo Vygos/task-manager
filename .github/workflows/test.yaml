@@ -19,3 +19,14 @@ jobs:
     steps:
       - name: Run tests
         run: echo "Running tests" ${{ github.event.inputs.action }}
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to aws
+        run: echo Deploying to aws
+      - name: Pushing image to ECR
+        run: echo Deploying to aws
+
+
