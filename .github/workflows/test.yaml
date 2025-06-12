@@ -1,0 +1,15 @@
+name: Test conditional workflows
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Choose an action to run'
+        required: true
+        type: choice
+        options:
+          - test
+          - deploy
+          - cleanup
+  push:
+    branches:
+      - master
